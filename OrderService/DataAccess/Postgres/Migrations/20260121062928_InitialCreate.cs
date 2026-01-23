@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace OrderService.WebApi.Migrations
+namespace OrderService.DataAccess.Postgres.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

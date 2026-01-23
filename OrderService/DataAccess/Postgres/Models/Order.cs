@@ -1,4 +1,4 @@
-﻿namespace OrderService.WebApi.Models;
+﻿namespace OrderService.DataAccess.Postgres.Models;
 
 public sealed class Order
 {

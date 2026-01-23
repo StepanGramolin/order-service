@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OrderService.WebApi.Models;
+using OrderService.DataAccess.Postgres.Models;
 
-namespace OrderService.WebApi.Infrastructure;
+namespace OrderService.DataAccess.Postgres.AppDbContext;
 
 public sealed class OrdersDbContext : DbContext
 {

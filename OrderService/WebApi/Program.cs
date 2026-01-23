@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using OrderService.DataAccess.Postgres.AppDbContext;
 using OrderService.WebApi.Infrastructure;
+using OrderService.WebApi.Mappers;
 using Refit;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +26,9 @@ builder.Services.AddScoped<PaymentsClient>();
 
 // Регистрация Kafka
 builder.Services.AddSingleton<KafkaProducer>();
+
+// Регистрации Mapperly
+builder.Services.AddSingleton<OrderMapper>();
 
 // Настройка логирования
 builder.Logging.ClearProviders();

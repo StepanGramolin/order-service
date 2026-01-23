@@ -29,14 +29,6 @@ public sealed class OrdersController : ControllerBase
     [HttpPost("create")]
     public async Task<ActionResult<long>> Create([FromBody] CreateOrderRequest request, CancellationToken ct)
     {
-        //var order = new Order
-        //{
-        //    ProductId = request.ProductId,
-        //    Amount = request.Amount,
-        //    EmailClient = request.EmailClient,
-        //    Price = request.Price,
-        //    PhoneNumber = request.PhoneNumber
-        //};
         var order = _orderMapper.ToOrderEntity(request);
 
         _db.Orders.Add(order);
@@ -53,13 +45,6 @@ public sealed class OrdersController : ControllerBase
                 ? cid.ToString()
                 : Guid.NewGuid().ToString("N");
 
-        //var evt = new OrderCreatedV1(
-        //    ProductId: order.ProductId,
-        //    Amount: order.Amount,
-        //    EmailClient: order.EmailClient,
-        //    Price: order.Price,
-        //    PhoneNumber: order.PhoneNumber
-        //);
         var evt = _orderMapper.ToOrderCreatedV1(order);
 
         await _producer.ProducePaymentSucceededAsync(evt, correlationId, ct);
@@ -74,14 +59,6 @@ public sealed class OrdersController : ControllerBase
     {
         var order = await _db.Orders.AsNoTracking().FirstOrDefaultAsync(x => x.OrderId == orderId, ct);
         if (order is null) return NotFound();
-
-        //return Ok(new GetOrderResponse(
-        //    ProductId: order.ProductId,
-        //    Amount: order.Amount,
-        //    EmailClient: order.EmailClient,
-        //    Price: order.Price,
-        //    PhoneNumber: order.PhoneNumber
-        //));
 
         return Ok(_orderMapper.ToGetOrderResponse(order));
     }

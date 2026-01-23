@@ -1,8 +1,12 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using OrderService.DataAccess.Postgres.AppDbContext;
 using OrderService.WebApi.Infrastructure;
 using OrderService.WebApi.Mappers;
+using OrderService.WebApi.Validators;
 using Refit;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +33,11 @@ builder.Services.AddSingleton<KafkaProducer>();
 
 // Регистрации Mapperly
 builder.Services.AddSingleton<OrderMapper>();
+
+// FluentValidation
+builder.Services.AddValidatorsFromAssemblyContaining<CreateOrderRequestValidator>();
+builder.Services.AddFluentValidationAutoValidation();
+
 
 // Настройка логирования
 builder.Logging.ClearProviders();

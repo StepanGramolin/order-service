@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using OrderService.WebApi.Controllers;
+using OrderService.WebApi.UseCases.Commands;
 
 namespace OrderService.WebApi.Validators;
 
-public class CreateOrderRequestValidator : AbstractValidator<CreateOrderRequest>
+public class CreateOrderRequestValidator : AbstractValidator<CreateOrderCommand>
 {
     public CreateOrderRequestValidator()
     {

@@ -25,11 +25,6 @@ builder.Services.AddDbContext<OrdersDbContext>(opt =>
 builder.Services.AddTransient<IPaymentsApi>(sp =>
     RestService.For<IPaymentsApi>("http://payment-service:8080"));
 
-// Регистрация MediatR
-builder.Services.AddMediatR(cfg => {
-    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
-});
-
 // Регистрация PaymentsClient
 builder.Services.AddScoped<PaymentsClient>();
 
@@ -40,9 +35,18 @@ builder.Services.AddSingleton<KafkaProducer>();
 builder.Services.AddSingleton<OrderMapper>();
 
 // FluentValidation
-builder.Services.AddValidatorsFromAssemblyContaining<CreateOrderRequestValidator>();
-builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly); // Регистрируем все валидаторы
 
+// Регистрация MediatR
+builder.Services.AddMediatR(cfg => {
+    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+    cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
+});
+
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<GlobalExceptionFilter>(); // Добавляем фильтр здесь
+});
 
 // Настройка логирования
 builder.Logging.ClearProviders();

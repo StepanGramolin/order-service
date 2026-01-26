@@ -1,6 +1,7 @@
 ﻿using OrderService.DataAccess.Postgres.Models;
 using OrderService.WebApi.Contracts;
 using OrderService.WebApi.Controllers;
+using OrderService.WebApi.UseCases.Commands;
 using Riok.Mapperly.Abstractions;
 
 namespace OrderService.WebApi.Mappers
@@ -15,6 +16,9 @@ namespace OrderService.WebApi.Mappers
         // 2. Маппинг из DTO CreateOrderRequest (из тела запроса) в сущность Order (для БД)
         // Это используется в Create() для сохранения в базу.
         public partial Order ToOrderEntity(CreateOrderRequest request);
+
+        // Mapperly увидит эту сигнатуру и сам сгенерирует маппинг из Команды в Сущность
+        public partial Order ToOrderEntity(CreateOrderCommand command);
 
         // 3. Маппинг из сущности Order (из БД) в DTO GetOrderResponse (для GET запроса)
         // Это используется в Get() для возврата данных клиенту.

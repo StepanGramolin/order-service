@@ -1,7 +1,4 @@
 ﻿using Refit;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 
 public sealed class PaymentsClient
 {

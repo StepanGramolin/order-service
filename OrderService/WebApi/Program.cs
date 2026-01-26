@@ -25,6 +25,11 @@ builder.Services.AddDbContext<OrdersDbContext>(opt =>
 builder.Services.AddTransient<IPaymentsApi>(sp =>
     RestService.For<IPaymentsApi>("http://payment-service:8080"));
 
+// Регистрация MediatR
+builder.Services.AddMediatR(cfg => {
+    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+});
+
 // Регистрация PaymentsClient
 builder.Services.AddScoped<PaymentsClient>();
 

@@ -7,7 +7,7 @@ using NUnit.Framework;
 using OrderService.WebApi.Controllers;
 using OrderService.WebApi.UseCases.Commands;
 
-namespace OrderService.Tests;
+namespace OrderService.UnitTests.Tests;
 
 [TestFixture]
 public class OrdersControllerTests

@@ -9,7 +9,7 @@ using OrderService.WebApi.Infrastructure;
 using OrderService.WebApi.Mappers;
 using OrderService.DataAccess.Postgres.AppDbContext;
 
-namespace OrderService.Tests.UseCases;
+namespace OrderService.UnitTests.Tests;
 
 [TestFixture]
 public class CreateOrderHandlerTests

@@ -8,7 +8,7 @@ using OrderService.WebApi.Mappers;
 using OrderService.WebApi.UseCases;
 using OrderService.WebApi.UseCases.Commands;
 
-namespace OrderService.Tests.Tests;
+namespace OrderService.UnitTests.Tests;
 
 [TestFixture]
 public class GetOrderHandlerTests

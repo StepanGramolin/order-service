@@ -7,7 +7,7 @@ using OrderService.DataAccess.Postgres.Models;
 using OrderService.WebApi.UseCases;
 using OrderService.WebApi.UseCases.Commands;
 
-namespace OrderService.Tests.Tests;
+namespace OrderService.UnitTests.Tests;
 
 [TestFixture]
 public class DeleteOrderHandlerTests

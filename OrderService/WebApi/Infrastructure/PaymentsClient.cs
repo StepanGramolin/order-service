@@ -1,6 +1,6 @@
 ﻿using Refit;
 
-public sealed class PaymentsClient
+public sealed class PaymentsClient : IPaymentsClient
 {
     private readonly IPaymentsApi _paymentsApi;
 
@@ -34,6 +34,11 @@ public sealed class PaymentsClient
             throw new Exception("Неизвестная ошибка при создании платежа", ex);
         }
     }
+}
+
+public interface IPaymentsClient
+{
+    Task CreatePaymentAsync(CreatePaymentRequest request, CancellationToken ct);
 }
 
 // Интерфейс API

@@ -10,10 +10,10 @@ public class CreateOrderHandler : IRequestHandler<CreateOrderCommand, long>
 {
     private readonly OrdersDbContext _db;
     private readonly OrderMapper _mapper;
-    private readonly PaymentsClient _payments;
-    private readonly KafkaProducer _producer;
+    private readonly IPaymentsClient _payments;
+    private readonly IKafkaProducer _producer;
 
-    public CreateOrderHandler(OrdersDbContext db, OrderMapper mapper, PaymentsClient payments, KafkaProducer producer)
+    public CreateOrderHandler(OrdersDbContext db, OrderMapper mapper, IPaymentsClient payments, IKafkaProducer producer)
     {
         _db = db;
         _mapper = mapper;

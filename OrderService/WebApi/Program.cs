@@ -1,10 +1,8 @@
 using FluentValidation;
-using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using OrderService.DataAccess.Postgres.AppDbContext;
 using OrderService.WebApi.Infrastructure;
 using OrderService.WebApi.Mappers;
-using OrderService.WebApi.Validators;
 using Refit;
 
 
@@ -26,10 +24,10 @@ builder.Services.AddTransient<IPaymentsApi>(sp =>
     RestService.For<IPaymentsApi>("http://payment-service:8080"));
 
 // Регистрация PaymentsClient
-builder.Services.AddScoped<PaymentsClient>();
+builder.Services.AddScoped<IPaymentsClient, PaymentsClient>();
 
 // Регистрация Kafka
-builder.Services.AddSingleton<KafkaProducer>();
+builder.Services.AddScoped<IKafkaProducer, KafkaProducer>();
 
 // Регистрации Mapperly
 builder.Services.AddSingleton<OrderMapper>();
